@@ -1,0 +1,46 @@
+﻿@model List<Rento.Models.Car>
+@{
+    ViewBag.Title = "Car_List";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car List</title>
+</head>
+<body>
+    <h2 style="color:darkblue;">Explore Our Fleet</h2>
+    <div border="1">
+
+        @foreach (var car in Model)
+        {
+        <div style="border: 1px solid black; width:100% ; height:50%; ">
+            <p style="font-weight:bolder; color:black; display:flex;">@car.Maker</p>
+            <p style="font-weight: bolder; color: black; padding-left: 65px; margin-top: -25px">@car.Model</p>
+
+            <a style="padding-left: 950px; margin-top: -25px; color: black; font-weight: bolder; border: 1px solid orange; border-radius: 10px; background: orange; border-width: 5px " href="@Url.Action("Car_Info","Home", new {  id =  car.ID})">Car Information</a>
+            <p style="color: darkorange; font-weight: bolder;">@car.Year</p>
+            @helper GetImagePath(string fileName)
+            {
+                var imagePath = $"~/Images/Cars/{fileName}";
+                <img src="@Url.Content(imagePath)" alt="Car Image" width="150" height="150" />
+            }
+            <p style="font-weight:bolder; padding-left: 600px">@GetImagePath(car.CImage)</p>
+
+            <p>
+                @if (car.CAvailable)
+                {
+                    <span style="color: green; font-weight: bolder; ">Car is available</span>
+                }
+                else
+                {
+                    <span style="color: red; font-weight: bolder;">Car is not available</span>
+                }
+            </p>
+            
+        </div>
+}
+    </div>
+</body>
+</html>
+

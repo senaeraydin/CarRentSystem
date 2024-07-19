@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Car_Info";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car List</title>
+</head>
+<body>
+    @helper GetImagePath(string fileName)
+    {
+        var imagePath = $"~/Images/Cars/{fileName}";
+        <img src="@Url.Content(imagePath)" alt="Car Image" width="2000" height="100" />
+    }
+    <p style="font-weight:bolder; ">@GetImagePath(Model.CImage)</p>
+
+    <p style="color: brown; font-size: 20px; margin-top: 10px; font-weight: bolder;">Maker : </p>
+    <p style="font-weight: bolder; color: black; font-size: 20px; margin-left:90px; margin-top: -23px">@Model.Maker</p>
+
+    <p style="color: brown; font-size: 20px; margin-top: 10px; font-weight: bolder;">Model :</p>
+    <p style="font-weight: bolder; color: black; font-size: 20px; margin-left: 90px; margin-top: -23px">@Model.Model</p>
+
+    <p style="color: brown; font-size: 20px; margin-top: 10px; font-weight: bolder;">Year :</p>
+    <p style="font-weight: bolder; color: black; font-size: 20px; margin-left: 90px; margin-top: -23px">@Model.Year</p>
+
+    <p style="color: brown; font-size: 20px; margin-top: 10px; font-weight: bolder;">Price: </p>
+    <p style="font-weight: bolder; color: black; font-size: 20px; margin-left: 90px; margin-top: -23px">$ @Model.Price per day</p>
+
+    <p style="color: brown; font-size: 20px; margin-top: 10px; font-weight: bolder;">Reserved:</p>
+    <p>
+        @if (Model.CAvailable)
+        {
+            <p style="color: green; font-weight: bolder; font-size: 20px; margin-left:110px; margin-top: -23px; margin-bottom:40px ">No, Reserve it now</p>
+            <a style=" border: 1px solid orange; border-radius:10px; background:orange; border-width: 15px; margin-left: 50px" href="#">Reservation</a>
+        }
+        else
+        {
+            <p style="color: red; font-weight: bolder; font-size: 20px; margin-left: 110px; margin-top: -23px; margin-bottom: 40px">Yes, please try again later</p>
+        }
+    </p>
+    <br />
+    <br />
+    <a style=" margin-right: 20px; font-size: 20px; color: darkblue; font-weight: bolder;" href="@Url.Action("Car_List","Home")">Back to List</a>
+    <a style="font-size: 20px; color: darkblue; font-weight: bolder; " href="@Url.Action("Index","Home")">Back to Home</a>
+
+</body>
+</html>
